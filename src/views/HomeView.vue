@@ -21,7 +21,7 @@ const handleServiceClick = (serviceId) => {
         </h1>
         <div class="vector-container">
           <img
-            src="@/assets/icons/vector.svg"
+            src="/src/assets/icons/vector.svg"
             alt="decorative wave"
             class="vector-image"
           />
