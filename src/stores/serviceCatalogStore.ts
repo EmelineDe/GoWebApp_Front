@@ -1,7 +1,11 @@
 import { defineStore } from "pinia";
+import type { Service } from "../interfaces/serviceInterface";
 
-export const useServiceStore = defineStore("service", {
-  state: () => ({
+export const serviceCatalogStore = defineStore("service", {
+  state: (): {
+    services: Service[];
+    selectedService: Service | null;
+  } => ({
     services: [
       {
         id: "plomberie",
@@ -45,16 +49,18 @@ export const useServiceStore = defineStore("service", {
   }),
 
   getters: {
-    getServices: (state) => state.services,
-    getSelectedService: (state) => state.selectedService,
-    getServiceById: (state) => (id) => {
-      return state.services.find((service) => service.id === id);
-    },
+    getServices: (state): Service[] => state.services,
+    getSelectedService: (state): Service | null => state.selectedService,
+    getServiceById:
+      (state) =>
+      (id: string): Service | undefined => {
+        return state.services.find((service) => service.id === id);
+      },
   },
 
   actions: {
-    selectService(serviceId) {
-      this.selectedService = this.getServiceById(serviceId);
+    selectService(serviceId: string): void {
+      this.selectedService = this.getServiceById(serviceId) ?? null;
     },
   },
 });

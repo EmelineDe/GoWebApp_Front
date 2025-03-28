@@ -1,9 +1,9 @@
 <script setup>
 import { useRouter } from "vue-router";
-import { useServiceStore } from "@/stores/serviceStore";
+import { serviceCatalogStore } from "@/stores/serviceCatalogStore";
 
 const router = useRouter();
-const serviceStore = useServiceStore();
+const serviceStore = serviceCatalogStore();
 
 const handleServiceClick = (serviceId) => {
   serviceStore.selectService(serviceId);
