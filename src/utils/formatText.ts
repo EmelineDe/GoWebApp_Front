@@ -1,3 +1,5 @@
-export function capitalize(text: string) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
+export function capitalize(text: string): string {
+  if (!text) return "";
+  const trimmed = text.trim().toLowerCase();
+  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
 }
