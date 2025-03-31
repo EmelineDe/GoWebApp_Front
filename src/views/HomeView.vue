@@ -7,6 +7,7 @@ const serviceStore = serviceCatalogStore();
 
 const handleServiceClick = (serviceId) => {
   serviceStore.selectService(serviceId);
+  if (!service?.enabled) return;
   router.push({ name: "service", params: { type: serviceId } });
 };
 </script>
@@ -14,7 +15,6 @@ const handleServiceClick = (serviceId) => {
 <template>
   <div class="page-container">
     <div class="content-wrapper">
-      <!-- Titre et vague -->
       <div class="header-section">
         <h1 class="text-h3 font-weight-bold font-poppins">
           Mon problème concerne :
@@ -28,7 +28,6 @@ const handleServiceClick = (serviceId) => {
         </div>
       </div>
 
-      <!-- Grille de services -->
       <div class="services-grid">
         <v-card
           v-for="service in serviceStore.getServices"
@@ -36,8 +35,15 @@ const handleServiceClick = (serviceId) => {
           width="180"
           height="180"
           class="service-card"
+          :disabled="!service.enabled"
           @click="() => handleServiceClick(service.id)"
         >
+          <v-tooltip
+            v-if="!service.enabled"
+            location="top"
+            text="Service non disponible pour le moment"
+          >
+          </v-tooltip>
           <v-card-item class="card-content">
             <div class="icon-container">
               <img
@@ -180,7 +186,6 @@ const handleServiceClick = (serviceId) => {
   letter-spacing: 0% !important;
 }
 
-/* Mobile first - ajustements pour les différentes tailles d'écran */
 @media (max-width: 600px) {
   .content-wrapper {
     width: 100%;

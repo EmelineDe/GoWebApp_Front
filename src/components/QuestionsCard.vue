@@ -23,7 +23,9 @@
           class="answer-button"
           @click="$emit('select', answer)"
         >
-          <div class="text-start">{{ capitalize(answer.displayText) }}</div>
+          <div class="text-start text-none">
+            {{ capitalize(answer.displayText) }}
+          </div>
           <v-icon end color="primary">mdi-chevron-right</v-icon>
         </v-btn>
       </v-col>

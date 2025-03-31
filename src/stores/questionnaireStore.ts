@@ -49,9 +49,12 @@ export const useQuestionnaireStore = defineStore("questionnaire", {
     goBack() {
       if (this.questions.length > 1) {
         this.questions.pop();
-        this.currentQuestion = this.questions[this.questions.length - 1];
+        this.currentQuestion =
+          this.questions[this.questions.length - 1] ?? null;
         this.answers.pop();
         this.isFinished = false;
+      } else {
+        this.reset();
       }
     },
 

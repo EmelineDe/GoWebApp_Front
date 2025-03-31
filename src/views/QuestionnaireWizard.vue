@@ -12,9 +12,14 @@ const { store, start, selectAnswer, goBack } = useQuestionnaire();
 
 onMounted(async () => {
   const serviceId = route.params.type as string;
+
+  // Si service invalide, on redirige
   serviceStore.selectService(serviceId);
-  if (!serviceStore.getSelectedService) return router.push({ name: "Home" });
-  await start(serviceId);
+  if (!serviceStore.getSelectedService) {
+    return router.push({ name: "Home" });
+  }
+
+  await start(serviceId); // Start centralisé avec logique intégrée
 });
 </script>
 
@@ -23,6 +28,7 @@ onMounted(async () => {
     <v-row>
       <v-col cols="12">
         <v-btn
+          class="text-none"
           variant="outlined"
           color="error"
           prepend-icon="mdi-arrow-left"
@@ -33,10 +39,9 @@ onMounted(async () => {
       </v-col>
     </v-row>
 
-    <v-row v-if="!store.loading && !store.isFinished">
+    <v-row v-if="store.currentQuestion && !store.isFinished">
       <v-col cols="12">
         <QuestionCard
-          v-if="store.currentQuestion"
           :question="store.currentQuestion"
           @select="selectAnswer"
         />
