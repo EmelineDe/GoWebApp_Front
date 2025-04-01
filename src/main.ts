@@ -27,6 +27,7 @@ const vuetify = createVuetify({
           primary: "#FF5252",
           secondary: "#FFFFFF",
           accent: "#FF5252",
+          lightPink: "#FFF0F1",
         },
       },
     },

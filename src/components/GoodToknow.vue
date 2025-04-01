@@ -37,7 +37,6 @@
 
 <style scoped>
 .good-to-know-card {
-  width: 620px;
   min-height: 736px;
   padding: 24px;
   border-radius: 10px;
@@ -68,7 +67,7 @@
 .good-to-know-text {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12px;
   color: #443d3c;
   margin-top: 10px;
   white-space: pre-line;

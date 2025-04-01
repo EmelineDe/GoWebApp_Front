@@ -185,7 +185,6 @@ defineEmits<{ (e: "select", answer: Answer): void }>();
   text-align: left;
 }
 
-/* Vuetify override */
 .justify-space-between :deep(.v-btn__content) {
   justify-content: space-between !important;
   width: 100%;

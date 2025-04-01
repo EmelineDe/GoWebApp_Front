@@ -25,6 +25,7 @@ function handlePopState() {
 
 onBeforeMount(() => {
   history.pushState(null, "", location.href);
+  setFormStep(false);
   window.addEventListener("popstate", handlePopState);
 });
 
@@ -37,13 +38,13 @@ onBeforeUnmount(() => {
   <v-container class="recap-container" fluid>
     <v-row class="recap-row" no-gutters>
       <!-- Colonne gauche -->
-      <v-col cols="12" md="6" class="left-col">
+      <v-col cols="12" md="5" offset-md="2" class="left-col">
         <GoodToKnow v-if="!isFormStep" />
         <UserForm v-else />
       </v-col>
 
       <!-- Colonne droite -->
-      <v-col cols="12" md="6" class="right-col">
+      <v-col cols="12" md="4" class="right-col">
         <RecapAnswers :isFormStep="isFormStep" @next="setFormStep(true)" />
       </v-col>
     </v-row>
@@ -52,28 +53,18 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .recap-container {
-  max-width: 1066px;
-  margin: 100px auto 0;
+  margin: 40px auto 0;
   padding: 10px;
-}
-
-.recap-row {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
 }
 
 /* Colonne gauche */
 .left-col {
   max-width: 50%;
-  display: flex;
-  justify-content: center;
 }
 
 /* Colonne droite */
 .right-col {
   max-width: 50%;
+  margin-left: 2rem;
 }
 </style>
