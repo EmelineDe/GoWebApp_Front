@@ -4,6 +4,7 @@ import { useQuestionnaireStore } from "@/stores/questionnaireStore";
 import { useUserForm } from "@/composable/userFormComposable";
 import { useRecapStep } from "@/composable/useRecapStep";
 import { useRouter } from "vue-router";
+import PreviousStepButton from "@/components/PreviousStepButton.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -185,15 +186,7 @@ const submitForm = async () => {
       </div>
 
       <div class="d-flex justify-space-between align-center mt-6">
-        <v-btn
-          variant="outlined"
-          color="error"
-          prepend-icon="mdi-arrow-left"
-          class="rounded-pill"
-          @click="setFormStep(false)"
-        >
-          Étape précédente
-        </v-btn>
+        <PreviousStepButton @click="setFormStep(false)" />
 
         <v-btn
           color="#FF445F"

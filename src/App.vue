@@ -1,10 +1,12 @@
 <script setup>
 import Footer from "@/components/Footer.vue";
+import AppHeader from "@/components/AppHeader.vue";
 </script>
 
 <template>
   <v-app>
-    <v-main class="bg-background">
+    <AppHeader v-if="$route.name !== 'Home'" />
+    <v-main>
       <v-container>
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
@@ -18,10 +20,6 @@ import Footer from "@/components/Footer.vue";
 </template>
 
 <style>
-.bg-background {
-  background-color: #443d3c !important;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;

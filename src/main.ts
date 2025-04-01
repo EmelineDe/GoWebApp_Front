@@ -17,13 +17,13 @@ const vuetify = createVuetify({
   components,
   directives,
   theme: {
-    defaultTheme: "dark",
+    defaultTheme: "light",
     themes: {
-      dark: {
-        dark: true,
+      light: {
+        dark: false,
         colors: {
-          background: "#443D3C",
-          surface: "#443D3C",
+          background: "#FFFFFF",
+          surface: "#FFFFFF",
           primary: "#FF5252",
           secondary: "#FFFFFF",
           accent: "#FF5252",

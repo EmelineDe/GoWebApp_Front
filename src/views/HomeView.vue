@@ -79,6 +79,8 @@ const handleServiceClick = (service: Service) => {
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: #443d3c;
+  color: #ffffff;
 }
 
 .content-wrapper {

@@ -8,37 +8,22 @@ import QuestionCard from "@/components/QuestionsCard.vue";
 const route = useRoute();
 const router = useRouter();
 const serviceStore = serviceCatalogStore();
-const { store, start, selectAnswer, goBack } = useQuestionnaire();
+const { store, start, selectAnswer } = useQuestionnaire();
 
 onMounted(async () => {
   const serviceId = route.params.type as string;
 
-  // Si service invalide, on redirige
   serviceStore.selectService(serviceId);
   if (!serviceStore.getSelectedService) {
     return router.push({ name: "Home" });
   }
 
-  await start(serviceId); // Start centralisé avec logique intégrée
+  await start(serviceId);
 });
 </script>
 
 <template>
   <v-container>
-    <v-row>
-      <v-col cols="12">
-        <v-btn
-          class="text-none"
-          variant="outlined"
-          color="error"
-          prepend-icon="mdi-arrow-left"
-          @click="goBack"
-        >
-          Étape précédente
-        </v-btn>
-      </v-col>
-    </v-row>
-
     <v-row v-if="store.currentQuestion && !store.isFinished">
       <v-col cols="12">
         <QuestionCard
@@ -55,3 +40,5 @@ onMounted(async () => {
     </v-row>
   </v-container>
 </template>
+
+<style scoped></style>

@@ -34,20 +34,46 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <v-container>
-    <v-row>
+  <v-container class="recap-container" fluid>
+    <v-row class="recap-row" no-gutters>
       <!-- Colonne gauche -->
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="6" class="left-col">
         <GoodToKnow v-if="!isFormStep" />
-        <template v-else>
-          <UserForm />
-        </template>
+        <UserForm v-else />
       </v-col>
 
       <!-- Colonne droite -->
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="6" class="right-col">
         <RecapAnswers :isFormStep="isFormStep" @next="setFormStep(true)" />
       </v-col>
     </v-row>
   </v-container>
 </template>
+
+<style scoped>
+.recap-container {
+  max-width: 1066px;
+  margin: 100px auto 0;
+  padding: 10px;
+}
+
+.recap-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* Colonne gauche */
+.left-col {
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Colonne droite */
+.right-col {
+  max-width: 50%;
+}
+</style>
