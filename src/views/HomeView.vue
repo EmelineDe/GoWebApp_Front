@@ -1,14 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { useRouter } from "vue-router";
 import { serviceCatalogStore } from "@/stores/serviceCatalogStore";
+import type { Service } from "@/interfaces/serviceInterface";
 
 const router = useRouter();
 const serviceStore = serviceCatalogStore();
 
-const handleServiceClick = (serviceId) => {
-  serviceStore.selectService(serviceId);
-  if (!service?.enabled) return;
-  router.push({ name: "service", params: { type: serviceId } });
+const handleServiceClick = (service: Service) => {
+  if (!service.enabled) return;
+  serviceStore.selectService(service.id);
+  router.push({ name: "service", params: { type: service.id } });
 };
 </script>
 
@@ -29,36 +30,38 @@ const handleServiceClick = (serviceId) => {
       </div>
 
       <div class="services-grid">
-        <v-card
+        <v-tooltip
           v-for="service in serviceStore.getServices"
           :key="service.id"
-          width="180"
-          height="180"
-          class="service-card"
-          :disabled="!service.enabled"
-          @click="() => handleServiceClick(service.id)"
+          :disabled="service.enabled"
+          location="top"
+          text="Service non disponible pour le moment"
         >
-          <v-tooltip
-            v-if="!service.enabled"
-            location="top"
-            text="Service non disponible pour le moment"
-          >
-          </v-tooltip>
-          <v-card-item class="card-content">
-            <div class="icon-container">
-              <img
-                :src="service.icon"
-                :alt="service.title"
-                class="service-icon"
-              />
-            </div>
-            <div class="title-container">
-              <div class="card-title">
-                {{ service.title }}
-              </div>
-            </div>
-          </v-card-item>
-        </v-card>
+          <template v-slot:activator="{ props }">
+            <v-card
+              width="180"
+              height="180"
+              class="service-card"
+              v-bind="props"
+              @click="handleServiceClick(service)"
+            >
+              <v-card-item class="card-content">
+                <div class="icon-container">
+                  <img
+                    :src="service.icon"
+                    :alt="service.title"
+                    class="service-icon"
+                  />
+                </div>
+                <div class="title-container">
+                  <div class="card-title">
+                    {{ service.title }}
+                  </div>
+                </div>
+              </v-card-item>
+            </v-card>
+          </template>
+        </v-tooltip>
       </div>
     </div>
   </div>

@@ -22,17 +22,21 @@ export const fetchQuestionById = (id: number) => api.get(`/questions/${id}`);
 export const fetchNextQuestionFromAnswer = (answerId: number) =>
   api.get(`/answers/${answerId}/next`);
 
-// 🔹 Utilisateur (infos + réponses d’un coup)
-export const createUserWithAnswers = (userData: {
+// 🔹 Utilisateur (séparé en deux appels maintenant)
+export const createUser = (userData: {
   firstName: string;
   lastName: string;
   address: string;
   zipCode: string;
   phoneNumber: string;
   email: string;
-  paymentMethod: string;
-  answers: { answerId: number }[];
+  paymentMethod: "online" | "in-person";
 }) => api.post("/user", userData);
+
+export const createUserAnswers = (payload: {
+  userId: number;
+  answers: { answerId: number }[];
+}) => api.post("/user-answers", payload);
 
 // 🔹 Récapitulatif utilisateur
 export const fetchUserWithAnswers = (userId: number) =>

@@ -1,9 +1,14 @@
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { UserSchema } from "@/schemas/userValidator";
+import { useQuestionnaireStore } from "@/stores/questionnaireStore";
 import type { User } from "@/interfaces/questionsAnswersInterface";
 
+type UserFormErrors = Partial<Record<keyof User, string[]>>;
+
 export function useUserForm() {
-  const user = ref<Partial<User>>({
+  const questionnaireStore = useQuestionnaireStore();
+
+  const user = ref({
     firstName: "",
     lastName: "",
     address: "",
@@ -11,29 +16,43 @@ export function useUserForm() {
     phoneNumber: "",
     email: "",
     paymentMethod: "",
-    answers: [],
+  });
+
+  const acceptTerms = ref(false);
+  const acceptRetraction = ref(false);
+  const acceptCommercial = ref(false);
+  const isSubmitted = ref(false);
+  const errors = ref<UserFormErrors>({});
+  const paymentOptions = ["Payer sur place", "Payer en ligne"];
+
+  const getUserPayload = (): Omit<User, "id"> => ({
+    ...user.value,
+    paymentMethod:
+      user.value.paymentMethod === "Payer en ligne" ? "online" : "in-person",
+    answers: questionnaireStore.answers.map((a) => ({
+      answerId: a.answerId,
+    })),
   });
 
   const validateUser = () => {
-    return UserSchema.safeParse(user.value);
+    const result = UserSchema.safeParse(getUserPayload());
+    errors.value = result.success ? {} : result.error.flatten().fieldErrors;
+    return result;
   };
 
-  const resetUser = () => {
-    user.value = {
-      firstName: "",
-      lastName: "",
-      address: "",
-      zipCode: "",
-      phoneNumber: "",
-      email: "",
-      paymentMethod: "",
-      answers: [],
-    };
-  };
+  watchEffect(() => {
+    if (isSubmitted.value) validateUser();
+  });
 
   return {
     user,
+    acceptTerms,
+    acceptRetraction,
+    acceptCommercial,
+    paymentOptions,
+    getUserPayload,
     validateUser,
-    resetUser,
+    errors,
+    isSubmitted,
   };
 }

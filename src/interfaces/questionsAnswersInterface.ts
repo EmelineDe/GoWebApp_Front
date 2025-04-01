@@ -14,20 +14,18 @@ export interface Answer {
   nextQuestionId?: number;
 }
 
+export interface UserAnswer {
+  answerId: number;
+}
+
 export interface User {
-  id: number;
+  id?: number;
   firstName: string;
   lastName: string;
   address: string;
   zipCode: string;
   phoneNumber: string;
   email: string;
-  paymentMethod: string;
+  paymentMethod: "online" | "in-person";
   answers: UserAnswer[];
-}
-
-export interface UserAnswer {
-  id: number;
-  user: User;
-  answer: Answer;
 }

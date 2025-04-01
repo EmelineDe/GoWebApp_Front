@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref, onBeforeMount, onBeforeUnmount } from "vue";
+import { onBeforeMount, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 import RecapAnswers from "@/components/RecapAnswers.vue";
 import UserForm from "@/components/UserForm.vue";
-import GoodToKnow from "@/components/goodToknow.vue";
+import GoodToKnow from "@/components/GoodToKnow.vue";
 import { useQuestionnaireStore } from "@/stores/questionnaireStore";
+import { useRecapStep } from "@/composable/useRecapStep";
 
 const router = useRouter();
 const store = useQuestionnaireStore();
-
-const isFormStep = ref(false);
+const { isFormStep, setFormStep } = useRecapStep();
 
 function handlePopState() {
   const confirmLeave = window.confirm(
@@ -41,21 +41,12 @@ onBeforeUnmount(() => {
         <GoodToKnow v-if="!isFormStep" />
         <template v-else>
           <UserForm />
-          <v-btn
-            variant="outlined"
-            color="error"
-            prepend-icon="mdi-arrow-left"
-            class="mt-4"
-            @click="isFormStep = false"
-          >
-            Étape précédente
-          </v-btn>
         </template>
       </v-col>
 
       <!-- Colonne droite -->
       <v-col cols="12" md="6">
-        <RecapAnswers :isFormStep="isFormStep" @next="isFormStep = true" />
+        <RecapAnswers :isFormStep="isFormStep" @next="setFormStep(true)" />
       </v-col>
     </v-row>
   </v-container>
