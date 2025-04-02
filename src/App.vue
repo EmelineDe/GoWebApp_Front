@@ -6,7 +6,7 @@ import AppHeader from "@/components/AppHeader.vue";
 <template>
   <v-app>
     <AppHeader v-if="$route.name !== 'Home'" />
-    <v-main>
+    <v-main class="main">
       <v-container>
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
@@ -28,5 +28,8 @@ import AppHeader from "@/components/AppHeader.vue";
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+.main {
+  padding-bottom: 5rem !important;
 }
 </style>

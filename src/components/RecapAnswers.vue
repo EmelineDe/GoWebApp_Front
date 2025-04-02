@@ -159,13 +159,13 @@ const recapSentence = computed(() => {
 
 <style scoped>
 .recap-wrapper {
-  width: 408px;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
 .recap-card {
+  width: 408px;
   background-color: #ffecef;
   border-radius: 10px;
   padding: 24px;

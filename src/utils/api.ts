@@ -12,17 +12,14 @@ const api = axios.create({
   },
 });
 
-// 🔹 Questions
 export const fetchFirstQuestion = (category: string) =>
   api.get(`/questions/first/${category}`);
 
 export const fetchQuestionById = (id: number) => api.get(`/questions/${id}`);
 
-// 🔹 Réponses
 export const fetchNextQuestionFromAnswer = (answerId: number) =>
   api.get(`/answers/${answerId}/next`);
 
-// 🔹 Utilisateur (séparé en deux appels maintenant)
 export const createUser = (userData: {
   firstName: string;
   lastName: string;
@@ -38,7 +35,6 @@ export const createUserAnswers = (payload: {
   answers: { answerId: number }[];
 }) => api.post("/user-answers", payload);
 
-// 🔹 Récapitulatif utilisateur
 export const fetchUserWithAnswers = (userId: number) =>
   api.get(`/user/${userId}`);
 

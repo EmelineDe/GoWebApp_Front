@@ -35,36 +35,64 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <v-container class="recap-container" fluid>
-    <v-row class="recap-row" no-gutters>
-      <!-- Colonne gauche -->
-      <v-col cols="12" md="5" offset-md="2" class="left-col">
+  <div class="recap-wrapper">
+    <div class="recap-flex">
+      <!-- Bloc gauche -->
+      <div class="left-block">
         <GoodToKnow v-if="!isFormStep" />
         <UserForm v-else />
-      </v-col>
+      </div>
 
-      <!-- Colonne droite -->
-      <v-col cols="12" md="4" class="right-col">
+      <!-- Bloc droite -->
+      <div class="right-block">
         <RecapAnswers :isFormStep="isFormStep" @next="setFormStep(true)" />
-      </v-col>
-    </v-row>
-  </v-container>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.recap-container {
-  margin: 40px auto 0;
-  padding: 10px;
+.recap-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 0;
 }
 
-/* Colonne gauche */
-.left-col {
-  max-width: 50%;
+.recap-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 32px;
+  max-width: 1200px;
+  width: 100%;
 }
 
-/* Colonne droite */
-.right-col {
-  max-width: 50%;
-  margin-left: 2rem;
+/* Bloc gauche */
+.left-block {
+  flex: 1;
+  max-width: 60%;
+}
+
+/* Bloc droite */
+.right-block {
+  flex: 1;
+  max-width: 40%;
+}
+
+/* Responsive mobile */
+@media screen and (max-width: 960px) {
+  .recap-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-block,
+  .right-block {
+    max-width: 100%;
+  }
+
+  .right-block {
+    margin-top: 24px;
+  }
 }
 </style>

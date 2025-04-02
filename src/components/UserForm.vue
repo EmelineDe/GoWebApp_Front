@@ -17,6 +17,8 @@ const {
   acceptRetraction,
   acceptCommercial,
   paymentOptions,
+  onlyLetters,
+  onlyDigits,
   validateUser,
   getUserPayload,
   errors,
@@ -82,6 +84,7 @@ const submitForm = async () => {
             :color="
               user.firstName.length >= 2 && !errors.firstName ? 'success' : ''
             "
+            @keydown="onlyLetters"
           />
         </v-col>
         <v-col cols="12" sm="6">
@@ -94,6 +97,7 @@ const submitForm = async () => {
             :color="
               user.lastName.length >= 2 && !errors.lastName ? 'success' : ''
             "
+            @keydown="onlyLetters"
           />
         </v-col>
         <v-col cols="12" sm="6">
@@ -118,6 +122,7 @@ const submitForm = async () => {
             :color="
               user.zipCode.length === 5 && !errors.zipCode ? 'success' : ''
             "
+            @keydown="onlyDigits"
           />
         </v-col>
         <v-col cols="12" sm="6">
@@ -133,6 +138,7 @@ const submitForm = async () => {
                 ? 'success'
                 : ''
             "
+            @keydown="onlyDigits"
           />
         </v-col>
         <v-col cols="12" sm="6">

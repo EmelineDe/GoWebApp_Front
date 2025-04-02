@@ -25,6 +25,38 @@ export function useUserForm() {
   const errors = ref<UserFormErrors>({});
   const paymentOptions = ["Payer sur place", "Payer en ligne"];
 
+  const onlyDigits = (e: KeyboardEvent) => {
+    const allowedKeys = [
+      "Backspace",
+      "Delete",
+      "ArrowLeft",
+      "ArrowRight",
+      "Tab",
+    ];
+
+    if (allowedKeys.includes(e.key)) return;
+
+    if (!/^\d$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const onlyLetters = (e: KeyboardEvent) => {
+    const allowedKeys = [
+      "Backspace",
+      "Delete",
+      "ArrowLeft",
+      "ArrowRight",
+      "Tab",
+    ];
+
+    if (allowedKeys.includes(e.key)) return;
+
+    if (!/^[a-zA-ZÀ-ÿ-]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   const getUserPayload = (): Omit<User, "id"> => ({
     ...user.value,
     paymentMethod:
@@ -50,6 +82,8 @@ export function useUserForm() {
     acceptRetraction,
     acceptCommercial,
     paymentOptions,
+    onlyLetters,
+    onlyDigits,
     getUserPayload,
     validateUser,
     errors,
