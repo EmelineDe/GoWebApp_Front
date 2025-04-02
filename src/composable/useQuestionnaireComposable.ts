@@ -1,11 +1,18 @@
 // src/composables/useQuestionnaireComposable.ts
 import { useQuestionnaireStore } from "@/stores/questionnaireStore";
 import type { Answer } from "@/interfaces/questionsAnswersInterface";
-import router from "@/router";
 import { watch } from "vue";
 import { useRoute } from "vue-router";
 
 export function useQuestionnaire() {
+  let router: typeof import("@/router").default;
+
+  async function loadRouter() {
+    if (!router) {
+      const mod = await import("@/router");
+      router = mod.default;
+    }
+  }
   const store = useQuestionnaireStore();
   const route = useRoute();
 
@@ -18,6 +25,9 @@ export function useQuestionnaire() {
         const restart = window.confirm(
           "Souhaitez-vous recommencer le questionnaire ?"
         );
+
+        await loadRouter();
+
         if (restart) {
           store.reset();
           await router.push("/");
@@ -29,6 +39,7 @@ export function useQuestionnaire() {
   );
 
   async function start(serviceId: string) {
+    await loadRouter();
     if (
       store.questions.length > 0 &&
       store.questions[0].category !== serviceId
@@ -62,11 +73,13 @@ export function useQuestionnaire() {
     await store.fetchNextQuestionFromAnswer(answer.id);
 
     if (store.isFinished) {
+      await loadRouter();
       router.push("/recap");
     }
   }
 
   async function goBack() {
+    await loadRouter();
     if (store.questions.length <= 1) {
       store.reset();
       await router.push("/");
