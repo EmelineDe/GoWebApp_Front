@@ -192,13 +192,15 @@ defineEmits<{ (e: "select", answer: Answer): void }>();
 
 .info-wrapper {
   max-width: 1066px;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 2rem;
 }
 
 .info-box {
   background-color: #defae9;
   border-radius: 10px;
   padding: 32px 38px;
+  gap: 10px;
 }
 
 .info-list {

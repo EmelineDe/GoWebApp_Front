@@ -1,51 +1,10 @@
-.bounce-enter-active {
-    animation: bounce-in 0.5s;
-}
-
-@keyframes bounce-in {
-    0% {
-        transform: scale(0);
-    }
-    50% {
-        transform: scale(1.25);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
 /* Styles globaux */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #443D3C;
 }
 
 #app {
     height: 100%;
-}
-
-/* Styles des titres */
-.text-h1,
-.text-h2,
-.text-h3,
-.text-h4,
-.text-h5,
-.text-h6 {
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 700 !important;
-    line-height: 100% !important;
-    letter-spacing: 0% !important;
-}
-
-/* Transitions */
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
 }
