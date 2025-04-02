@@ -20,5 +20,15 @@ export default defineConfig({
         inline: ["vuetify"],
       },
     },
+    coverage: {
+      exclude: [
+        "src/main.ts",
+        "src/App.vue",
+        "src/router/index.ts",
+        "src/interfaces/**",
+        "src/env.d.ts",
+        "src/router/index.ts",
+      ],
+    },
   },
 });
