@@ -2,6 +2,10 @@ import { describe, it, expect } from "vitest";
 import { AnswerSchema, QuestionSchema } from "../questionsValidator";
 
 describe("AnswerSchema", () => {
+  /**
+   * Test pour vérifier que la réponse est valide.
+   */
+
   it("valide une réponse correcte", () => {
     const result = AnswerSchema.safeParse({
       id: 1,
@@ -13,6 +17,10 @@ describe("AnswerSchema", () => {
     expect(result.success).toBe(true);
   });
 
+  /**
+   * Test pour vérifier que la réponse est rejetée si elle n'a pas d'id.
+   */
+
   it("rejette une réponse sans id", () => {
     const result = AnswerSchema.safeParse({
       text: "Réponse B",
@@ -22,6 +30,10 @@ describe("AnswerSchema", () => {
     expect(result.success).toBe(false);
     expect(result.error?.format().id?._errors[0]).toContain("Required");
   });
+
+  /**
+   * Test pour vérifier que la réponse est valide si elle n'a pas de nextQuestionId.
+   */
 
   it("accepte l'absence de nextQuestionId", () => {
     const result = AnswerSchema.safeParse({
@@ -35,6 +47,10 @@ describe("AnswerSchema", () => {
 });
 
 describe("QuestionSchema", () => {
+  /**
+   * Test pour vérifier que la question est valide.
+   */
+
   it("valide une question complète avec réponses", () => {
     const result = QuestionSchema.safeParse({
       id: 10,
@@ -50,6 +66,10 @@ describe("QuestionSchema", () => {
     expect(result.success).toBe(true);
   });
 
+  /**
+   * Test pour vérifier que la question est rejetée si elle n'a pas de réponses.
+   */
+
   it("rejette une question sans réponses", () => {
     const result = QuestionSchema.safeParse({
       id: 11,
@@ -61,6 +81,10 @@ describe("QuestionSchema", () => {
 
     expect(result.success).toBe(true);
   });
+
+  /**
+   * Test pour vérifier que la question est rejetée si elle a une mauvaise réponse.
+   */
 
   it("rejette une question avec une mauvaise réponse", () => {
     const result = QuestionSchema.safeParse({

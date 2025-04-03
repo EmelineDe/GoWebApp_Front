@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/**
+ * Composant QuestionnaireWizard pour gérer l'affichage et la navigation à travers les questions d'un service spécifique.
+ * Charge les questions associées à un service donné et gère la sélection des réponses.
+ */
+
 import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { serviceCatalogStore } from "@/stores/serviceCatalogStore";

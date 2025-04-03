@@ -11,5 +11,3 @@ const vuetify = createVuetify({
 });
 
 config.global.plugins = [vuetify];
-
-console.log("🔥 Vitest setup : Vuetify injecté globalement");

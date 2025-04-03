@@ -31,6 +31,7 @@ export default defineConfig({
         "**/interfaces/**/*.ts",
         "**/vite.config.ts",
         "**/vitest.config.ts",
+        "**/__tests__/Mocks/**",
       ],
     },
   },

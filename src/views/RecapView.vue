@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/**
+ * Composant RecapView pour afficher le récapitulatif des réponses et gérer le formulaire utilisateur.
+ * Gère également la navigation "popstate" pour confirmer le redémarrage du questionnaire.
+ */
+
 import { onBeforeMount, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 import RecapAnswers from "@/components/RecapAnswers.vue";

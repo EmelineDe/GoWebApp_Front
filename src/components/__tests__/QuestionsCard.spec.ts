@@ -32,10 +32,18 @@ describe("QuestionCard", () => {
       },
     });
 
+  /**
+   * Test pour vérifier que le titre est affiché correctement.
+   */
+
   it("affiche le titre capitalisé", () => {
     const wrapper = factory();
     expect(wrapper.find("h2").text()).toBe("Quelle est votre localisation ?");
   });
+
+  /**
+   * Test pour vérifier que les réponses sont affichées correctement.
+   */
 
   it("affiche les réponses attendues", () => {
     const wrapper = factory();
@@ -44,6 +52,10 @@ describe("QuestionCard", () => {
     expect(buttons[0].text()).toContain("Paris");
     expect(buttons[1].text()).toContain("Lyon");
   });
+
+  /**
+   * Test pour vérifier que l'événement "select" est émis au clic sur une réponse.
+   */
 
   it('émet un événement "select" au clic sur une réponse', async () => {
     const wrapper = factory();
@@ -59,11 +71,19 @@ describe("QuestionCard", () => {
     });
   });
 
+  /**
+   * Test pour vérifier que le bouton PreviousStepButton est affiché.
+   */
+
   it("rend le bouton PreviousStepButton", () => {
     const wrapper = factory();
     const backBtn = wrapper.findComponent(PreviousStepButton);
     expect(backBtn.exists()).toBe(true);
   });
+
+  /**
+   * Test pour vérifier que les 3 éléments de la section info sont affichés.
+   */
 
   it("affiche les 3 éléments de la section info", () => {
     const wrapper = factory();

@@ -10,6 +10,10 @@ describe("GoodToKnow", () => {
     expect(title.text()).toBe("Bon à savoir");
   });
 
+  /**
+   * Test pour vérifier que l'image est affichée avec les attributs src et alt corrects.
+   */
+
   it("renders the image with correct src and alt attributes", () => {
     const wrapper = mount(GoodToKnow);
     const img = wrapper.find("img");
@@ -18,6 +22,10 @@ describe("GoodToKnow", () => {
     expect(img.attributes("alt")).toBe("image");
   });
 
+  /**
+   * Test pour vérifier que le contenu du paragraphe est affiché correctement.
+   */
+
   it("renders the paragraph content", () => {
     const wrapper = mount(GoodToKnow);
     const paragraph = wrapper.find(".good-to-know-text");
@@ -25,6 +33,10 @@ describe("GoodToKnow", () => {
     expect(paragraph.text()).toContain("Vous faites face à des WC bouchés");
     expect(paragraph.text()).toContain("Le débouchage des WC");
   });
+
+  /**
+   * Test pour vérifier que la classe wrapper correcte est appliquée à la carte.
+   */
 
   it("applies the correct wrapper class to the card", () => {
     const wrapper = mount(GoodToKnow);

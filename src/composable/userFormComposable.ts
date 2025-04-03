@@ -5,6 +5,10 @@ import type { User } from "@/interfaces/questionsAnswersInterface";
 
 type UserFormErrors = Partial<Record<keyof User, string[]>>;
 
+/**
+ * Composable pour gérer le formulaire des informations de l'utilisateur.
+ */
+
 export function useUserForm() {
   const questionnaireStore = useQuestionnaireStore();
 
@@ -41,6 +45,10 @@ export function useUserForm() {
     }
   };
 
+  /**
+   * Vérifie que les caractères sont des lettres.
+   */
+
   const onlyLetters = (e: KeyboardEvent) => {
     const allowedKeys = [
       "Backspace",
@@ -57,6 +65,10 @@ export function useUserForm() {
     }
   };
 
+  /**
+   * Retourne les données du formulaire.
+   */
+
   const getUserPayload = (): Omit<User, "id"> => ({
     ...user.value,
     paymentMethod:
@@ -66,11 +78,19 @@ export function useUserForm() {
     })),
   });
 
+  /**
+   * Valide le formulaire.
+   */
+
   const validateUser = () => {
     const result = UserSchema.safeParse(getUserPayload());
     errors.value = result.success ? {} : result.error.flatten().fieldErrors;
     return result;
   };
+
+  /**
+   * Surveille les changements de l'état de soumission du formulaire.
+   */
 
   watchEffect(() => {
     if (isSubmitted.value) validateUser();

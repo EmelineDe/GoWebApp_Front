@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/**
+ * Composant ServicesPage permettant à l'utilisateur de sélectionner un service afin d'accéder au questionnaire associé.
+ * Ce composant gère la navigation basée sur le service sélectionné et active des tooltips pour les services non disponibles.
+ */
+
 import { useRouter } from "vue-router";
 import { serviceCatalogStore } from "@/stores/serviceCatalogStore";
 import type { Service } from "@/interfaces/serviceInterface";

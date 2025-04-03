@@ -1,75 +1,79 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
-import HomeView from "@/views/HomeView.vue";
-import { createTestingPinia } from "@pinia/testing";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
+// Mock store
+import { selectServiceMock, servicesMock } from "./Mocks/HomeViewServiceMock";
+
+vi.mock("@/stores/serviceCatalogStore", () => ({
+  serviceCatalogStore: () => ({
+    selectService: selectServiceMock,
+    getServices: servicesMock,
+  }),
+}));
+
+// Mock router
+const pushMock = vi.fn();
+vi.mock("vue-router", () => ({
+  useRouter: () => ({ push: pushMock }),
+}));
+
+import HomeView from "@/views/HomeView.vue";
+
 const vuetify = createVuetify({ components, directives });
 
 describe("HomeView.vue", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  /**
+   * Test pour vérifier que tous les services sont affichés.
+   */
+
   it("affiche tous les services", () => {
     const wrapper = mount(HomeView, {
-      global: {
-        plugins: [
-          vuetify,
-          createTestingPinia({
-            stubActions: false,
-            initialState: {
-              service: {
-                services: [
-                  {
-                    id: "plomberie",
-                    title: "Plomberie",
-                    icon: "icon.svg",
-                    color: "#FF5252",
-                    enabled: true,
-                  },
-                  {
-                    id: "electricite",
-                    title: "Électricité",
-                    icon: "icon.svg",
-                    color: "#FF5252",
-                    enabled: false,
-                  },
-                  {
-                    id: "chauffage",
-                    title: "Chauffage",
-                    icon: "icon.svg",
-                    color: "#FF5252",
-                    enabled: false,
-                  },
-                  {
-                    id: "serrurerie",
-                    title: "Serrurerie",
-                    icon: "icon.svg",
-                    color: "#FF5252",
-                    enabled: false,
-                  },
-                  {
-                    id: "vitrerie",
-                    title: "Vitrerie",
-                    icon: "icon.svg",
-                    color: "#FF5252",
-                    enabled: false,
-                  },
-                  {
-                    id: "electromenager",
-                    title: "Électroménager",
-                    icon: "icon.svg",
-                    color: "#FF5252",
-                    enabled: false,
-                  },
-                ],
-              },
-            },
-          }),
-        ],
-      },
+      global: { plugins: [vuetify] },
     });
 
     const cards = wrapper.findAll(".service-card");
-    expect(cards.length).toBe(6);
+    expect(cards.length).toBe(servicesMock.length);
+  });
+
+  /**
+   * Test pour vérifier que le composant redirige vers la page service si le service est activé.
+   */
+
+  it("redirige vers la page service si le service est activé", async () => {
+    const wrapper = mount(HomeView, {
+      global: { plugins: [vuetify] },
+    });
+
+    const cards = wrapper.findAll(".service-card");
+    await cards[0].trigger("click");
+
+    expect(selectServiceMock).toHaveBeenCalledWith("plomberie");
+    expect(pushMock).toHaveBeenCalledWith({
+      name: "service",
+      params: { type: "plomberie" },
+    });
+  });
+
+  /**
+   * Test pour vérifier que le composant ne fait rien si le service est désactivé.
+   */
+
+  it("n'appelle rien si le service est désactivé", async () => {
+    const wrapper = mount(HomeView, {
+      global: { plugins: [vuetify] },
+    });
+
+    const cards = wrapper.findAll(".service-card");
+    await cards[1].trigger("click");
+
+    expect(selectServiceMock).not.toHaveBeenCalled();
+    expect(pushMock).not.toHaveBeenCalled();
   });
 });

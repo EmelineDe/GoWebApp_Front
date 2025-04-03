@@ -53,7 +53,6 @@ defineEmits(["click"]);
   background-color: transparent !important;
   color: #ff445f !important;
 
-  /* Texte */
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 14px;

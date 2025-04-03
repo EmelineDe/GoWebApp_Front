@@ -55,8 +55,26 @@ export const serviceCatalogStore = defineStore("service", {
   }),
 
   getters: {
+    /**
+     * Récupère toutes les services.
+     * @returns {Service[]} Liste des services.
+     */
+
     getServices: (state): Service[] => state.services,
+
+    /**
+     * Récupère le service sélectionné.
+     * @returns {Service | null} Service sélectionné ou null si aucun service n'est sélectionné.
+     */
+
     getSelectedService: (state): Service | null => state.selectedService,
+
+    /**
+     * Récupère un service par son identifiant.
+     * @param {string} id - L'identifiant du service.
+     * @returns {Service | undefined} Service trouvé ou undefined si aucun service n'est trouvé.
+     */
+
     getServiceById:
       (state) =>
       (id: string): Service | undefined => {
@@ -65,6 +83,11 @@ export const serviceCatalogStore = defineStore("service", {
   },
 
   actions: {
+    /**
+     * Sélectionne un service.
+     * @param {string} serviceId - L'identifiant du service à sélectionner.
+     */
+
     selectService(serviceId: string): void {
       this.selectedService = this.getServiceById(serviceId) ?? null;
     },

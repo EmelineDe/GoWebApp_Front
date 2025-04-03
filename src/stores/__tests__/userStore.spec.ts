@@ -3,11 +3,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { useUserStore } from "@/stores/userStore";
 import * as api from "@/utils/api";
 import type { User } from "@/interfaces/questionsAnswersInterface";
-import type {
-  AxiosResponse,
-  AxiosRequestConfig,
-  InternalAxiosRequestConfig,
-} from "axios";
+import type { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const mockUser: User = {
   id: 1,
@@ -36,11 +32,19 @@ describe("userStore", () => {
     setActivePinia(createPinia());
   });
 
+  /**
+   * Test pour vérifier que le store est initialisé avec les valeurs par défaut.
+   */
+
   it("setUser met à jour l'état avec les données utilisateur", () => {
     const store = useUserStore();
     store.setUser({ firstName: "Alice" });
     expect(store.user.firstName).toBe("Alice");
   });
+
+  /**
+   * Test pour vérifier que le store est réinitialisé.
+   */
 
   it("resetUser réinitialise l'utilisateur", () => {
     const store = useUserStore();
@@ -48,6 +52,10 @@ describe("userStore", () => {
     store.resetUser();
     expect(store.user).toEqual({});
   });
+
+  /**
+   * Test pour vérifier que le store est initialisé avec les valeurs par défaut.
+   */
 
   it("createUser appelle l'API et met à jour l'utilisateur", async () => {
     const store = useUserStore();
@@ -68,6 +76,10 @@ describe("userStore", () => {
     expect(store.user).toEqual(mockUser);
   });
 
+  /**
+   * Test pour vérifier que les réponses d'un utilisateur sont créées.
+   */
+
   it("submitUserAnswers appelle createUserAnswers", async () => {
     const store = useUserStore();
 
@@ -85,6 +97,10 @@ describe("userStore", () => {
       answers: [{ answerId: 42 }],
     });
   });
+
+  /**
+   * Test pour vérifier que les données utilisateur sont récupérées.
+   */
 
   it("fetchUserWithAnswers récupère les données utilisateur", async () => {
     const store = useUserStore();

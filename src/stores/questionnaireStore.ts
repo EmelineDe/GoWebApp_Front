@@ -1,4 +1,3 @@
-// src/stores/questionnaireStore.ts
 import { defineStore } from "pinia";
 import api from "@/utils/api";
 import type { Question } from "@/interfaces/questionsAnswersInterface";
@@ -13,6 +12,11 @@ export const useQuestionnaireStore = defineStore("questionnaire", {
   }),
 
   actions: {
+    /**
+     * Récupère la première question d'une catégorie donnée.
+     * @param {string} category - La catégorie de la question.
+     */
+
     async fetchFirstQuestion(category: string) {
       this.loading = true;
       try {
@@ -27,6 +31,11 @@ export const useQuestionnaireStore = defineStore("questionnaire", {
         this.loading = false;
       }
     },
+
+    /**
+     * Récupère la prochaine question d'une réponse donnée.
+     * @param {number} answerId - L'identifiant de la réponse.
+     */
 
     async fetchNextQuestionFromAnswer(answerId: number) {
       this.loading = true;
@@ -46,6 +55,10 @@ export const useQuestionnaireStore = defineStore("questionnaire", {
       }
     },
 
+    /**
+     * Revient à la question précédente.
+     */
+
     goBack() {
       if (this.questions.length > 1) {
         this.questions.pop();
@@ -57,6 +70,10 @@ export const useQuestionnaireStore = defineStore("questionnaire", {
         this.reset();
       }
     },
+
+    /**
+     * Réinitialise le store.
+     */
 
     reset() {
       this.questions = [];

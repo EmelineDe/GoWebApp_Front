@@ -1,4 +1,3 @@
-// src/composables/useQuestionnaireComposable.ts
 import { useQuestionnaireStore } from "@/stores/questionnaireStore";
 import type { Answer } from "@/interfaces/questionsAnswersInterface";
 import { watch } from "vue";
@@ -6,6 +5,10 @@ import { useRoute } from "vue-router";
 
 export function useQuestionnaire() {
   let router: typeof import("@/router").default;
+
+  /**
+   * Charge le routeur.
+   */
 
   async function loadRouter() {
     if (!router) {
@@ -15,6 +18,10 @@ export function useQuestionnaire() {
   }
   const store = useQuestionnaireStore();
   const route = useRoute();
+
+  /**
+   * Surveille les changements de chemin.
+   */
 
   watch(
     () => route.fullPath,
@@ -38,6 +45,10 @@ export function useQuestionnaire() {
     }
   );
 
+  /**
+   * Démarre le questionnaire.
+   */
+
   async function start(serviceId: string) {
     await loadRouter();
     if (
@@ -56,6 +67,10 @@ export function useQuestionnaire() {
 
     store.isFinished = false;
   }
+
+  /**
+   * Sélectionne une réponse.
+   */
 
   async function selectAnswer(answer: Answer) {
     console.log("Selected answer ID:", answer.id);
@@ -78,6 +93,10 @@ export function useQuestionnaire() {
     }
   }
 
+  /**
+   * Revient à la question précédente.
+   */
+
   async function goBack() {
     await loadRouter();
     if (store.questions.length <= 1) {
@@ -88,6 +107,10 @@ export function useQuestionnaire() {
       store.goBack();
     }
   }
+
+  /**
+   * Retourne les données du store.
+   */
 
   return {
     store,

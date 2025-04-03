@@ -1,5 +1,3 @@
-// tests/unit/useUserForm.spec.ts
-
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { useUserForm } from "../userFormComposable";
 import { setActivePinia, createPinia } from "pinia";
@@ -30,6 +28,17 @@ describe("useUserForm", () => {
     expect(preventDefault).not.toHaveBeenCalled();
   });
 
+  it("onlyDigits devrait autoriser les touches autorisées", () => {
+    const form = useUserForm();
+    const preventDefault = vi.fn();
+
+    const allowed = ["Backspace", "ArrowLeft", "ArrowRight", "Tab"];
+    for (const key of allowed) {
+      form.onlyDigits({ key, preventDefault } as any);
+      expect(preventDefault).not.toHaveBeenCalled();
+    }
+  });
+
   it("onlyLetters devrait bloquer les chiffres", () => {
     const form = useUserForm();
     const preventDefault = vi.fn();
@@ -41,6 +50,17 @@ describe("useUserForm", () => {
 
     form.onlyLetters({ key: "a", preventDefault } as any);
     expect(preventDefault).not.toHaveBeenCalled();
+  });
+
+  it("onlyLetters devrait autoriser les touches autorisées", () => {
+    const form = useUserForm();
+    const preventDefault = vi.fn();
+
+    const allowed = ["Backspace", "ArrowLeft", "ArrowRight", "Tab"];
+    for (const key of allowed) {
+      form.onlyLetters({ key, preventDefault } as any);
+      expect(preventDefault).not.toHaveBeenCalled();
+    }
   });
 
   it("getUserPayload devrait transformer paymentMethod", () => {
