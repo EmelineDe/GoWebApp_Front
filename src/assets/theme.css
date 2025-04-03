@@ -1,8 +1,10 @@
 /* ========== CONTAINERS PRINCIPAUX (CARD / WRAPPERS) ========== */
 
 .gw-container {
-  width: 1066px;
-  padding: 32px 38px;
+  max-width: 1066px;
+  width: 100%;
+  padding: 32px 24px;
+  margin: 0 auto;
   background-color: #ffffff;
   border: 1px solid #f2f2f2;
   border-radius: 10px;
@@ -10,9 +12,11 @@
 }
 
 .gw-inner-box {
-  width: 893px;
+  max-width: 893px;
+  width: 100%;
   padding: 10px;
   gap: 16px;
+  margin: 0 auto;
 }
 
 /* ==========  BOUTONS ========== */
@@ -96,4 +100,42 @@
 
 .gw-full-width {
   width: 100%;
+}
+
+@media (min-width: 960px) {
+  .gw-container {
+    max-width: none ! important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .gw-container {
+    padding: 24px 16px;
+  }
+
+  .gw-button {
+    width: 100%;
+  }
+
+  .gw-button-primary {
+    width: 100%;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .gw-inner-box {
+    padding: 8px;
+    gap: 12px;
+  }
+
+  .gw-title {
+    font-size: 16px;
+  }
+
+  .gw-label {
+    font-size: 11px;
+  }
+
+  .gw-text-small {
+    font-size: 9px;
+  }
 }

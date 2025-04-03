@@ -99,5 +99,30 @@ onBeforeUnmount(() => {
   .right-block {
     margin-top: 24px;
   }
+
+  @media screen and (max-width: 768px) {
+    .gw-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gw-container {
+    padding: 24px 16px !important;
+  }
+
+  .gw-recap-columns {
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: center;
+  }
+
+  .gw-recap-form-or-summary,
+  .gw-recap-columns > * {
+    width: 100% !important;
+    padding: 0 8px;
+  }
 }
 </style>

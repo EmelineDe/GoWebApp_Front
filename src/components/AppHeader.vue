@@ -14,20 +14,17 @@
 <style scoped>
 /*  Barre principale */
 .app-header {
-  display: flex;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
-  height: 61px;
   background-color: #ffffff;
-  color: #000000;
-  font-family: "Aller", sans-serif;
+  height: auto;
 }
-
 /* Bloc Goweb. */
 .logo-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  justify-self: start;
+  margin-left: 0;
   padding: 8px 16px;
   height: 100%;
   background-color: #443d3c;
@@ -58,9 +55,9 @@
   font-family: "Catamaran", sans-serif;
   font-weight: 800;
   font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-self: end;
+  text-align: right;
+  margin-right: 0;
   border-radius: 0 16px 0 0;
 }
 </style>

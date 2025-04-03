@@ -203,4 +203,84 @@ const infoList = [
 .info-list li strong {
   font-weight: 600;
 }
+
+/* TABLETTE : de 768px à 1023px */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .question-card {
+    padding: 28px 24px;
+  }
+
+  .answers-grid {
+    grid-template-columns: 1fr !important;
+    width: 80% !important;
+    padding: 0 !important;
+  }
+
+  .answer-button {
+    width: 100% !important;
+    padding: 28px 20px !important;
+  }
+
+  .question-title {
+    font-size: 28px;
+  }
+
+  .info-wrapper {
+    padding: 0 24px;
+  }
+
+  .info-box {
+    padding: 28px 24px;
+  }
+
+  .info-list {
+    padding-left: 20px;
+  }
+}
+
+/* MOBILE : ≤ 767px */
+@media screen and (max-width: 767px) {
+  .question-card {
+    padding: 24px 16px;
+  }
+
+  .answers-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .answer-button {
+    width: 150px !important;
+    padding: 24px 16px !important;
+    white-space: normal !important;
+    word-break: break-word;
+    text-align: left;
+  }
+  .answer-label {
+    font-size: 12px;
+  }
+
+  .question-title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .info-wrapper {
+    padding: 0 16px;
+  }
+
+  .info-box {
+    padding: 24px 16px;
+  }
+
+  .info-list {
+    padding-left: 0;
+  }
+
+  .info-list li {
+    font-size: 13px;
+    line-height: 130%;
+  }
+}
 </style>
