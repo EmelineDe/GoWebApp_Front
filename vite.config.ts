@@ -4,7 +4,6 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import svgLoader from "vite-svg-loader";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), svgLoader()],
   resolve: {
@@ -18,5 +17,9 @@ export default defineConfig({
         additionalData: `@use "vuetify/styles" as *;`,
       },
     },
+  },
+  define: {
+    __VUE_OPTIONS_API__: true,
+    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
   },
 });

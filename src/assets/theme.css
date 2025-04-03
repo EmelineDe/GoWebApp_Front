@@ -1,0 +1,141 @@
+/* ========== CONTAINERS PRINCIPAUX (CARD / WRAPPERS) ========== */
+
+.gw-container {
+  max-width: 1066px;
+  width: 100%;
+  padding: 32px 24px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 4px 7px 18px 7px rgba(0, 0, 0, 0.05);
+}
+
+.gw-inner-box {
+  max-width: 893px;
+  width: 100%;
+  padding: 10px;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+/* ==========  BOUTONS ========== */
+
+.gw-button {
+  padding: 13px 16px;
+  width: 423px;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+.gw-button:hover {
+  filter: brightness(0.95);
+}
+
+.gw-button-primary {
+  width: 305px;
+  height: 56px;
+  padding: 16px 24px;
+  border: 1px solid #ff445f;
+  background-color: #ff445f;
+  color: #ffffff;
+  border-radius: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ==========  TYPOGRAPHIE ========== */
+
+.gw-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 135%;
+  letter-spacing: -1%;
+  color: #443d3c;
+}
+
+.gw-label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #443d3c;
+}
+
+.gw-text-small {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 100%;
+  color: #443d3c;
+}
+
+/* ==========  BORDURES DÉLIMITATION HEADER / FOOTER ========== */
+
+.gw-top-border {
+  border-top: 1px solid #f2f2f2;
+}
+
+.gw-bottom-border {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/* ==========  UTILITAIRES ========== */
+
+.gw-radius-10 {
+  border-radius: 10px;
+}
+
+.gw-shadow-light {
+  box-shadow: 4px 7px 18px 7px rgba(0, 0, 0, 0.05);
+}
+
+.gw-full-width {
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .gw-container {
+    max-width: none ! important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .gw-container {
+    padding: 24px 16px;
+  }
+
+  .gw-button {
+    width: 100%;
+  }
+
+  .gw-button-primary {
+    width: 100%;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .gw-inner-box {
+    padding: 8px;
+    gap: 12px;
+  }
+
+  .gw-title {
+    font-size: 16px;
+  }
+
+  .gw-label {
+    font-size: 11px;
+  }
+
+  .gw-text-small {
+    font-size: 9px;
+  }
+}
