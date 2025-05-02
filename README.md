@@ -1,4 +1,4 @@
-# GoWebApp - Frontend
+# GoWebApp Frontend
 
 GoWebApp est une application Vue 3 développée avec Vite, Vuetify, Pinia et TypeScript. Elle permet de qualifier un chantier de dépannage à travers un système de **questionnaire dynamique** en trois étapes, suivi d’un formulaire de contact.
 
