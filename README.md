@@ -1,6 +1,6 @@
-# GoWebApp Frontend
+# DepannageApp  Frontend
 
-GoWebApp est une application Vue 3 développée avec Vite, Vuetify, Pinia et TypeScript. Elle permet de qualifier un chantier de dépannage à travers un système de **questionnaire dynamique** en trois étapes, suivi d’un formulaire de contact.
+DepannageApp est une application Vue 3 développée avec Vite, Vuetify, Pinia et TypeScript. Elle permet de qualifier un chantier de dépannage à travers un système de **questionnaire dynamique** en trois étapes, suivi d’un formulaire de contact.
 
 ## 🔧 Technologies utilisées
 
@@ -86,4 +86,4 @@ npm run build
 
 ## 🧑‍💻 Développeur
 
-Ce projet a été réalisé dans le cadre d’un test technique pour Goweb par Emeline Delobel.
+Ce projet a été réalisé par Emeline Delobel.
