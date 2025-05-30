@@ -13,7 +13,7 @@ describe("Footer", () => {
     expect(wrapper.vm).toBeTruthy();
 
     const footerText = wrapper.find(".footer-text");
-    expect(footerText.text()).toBe("Goweb.");
+    expect(footerText.text()).toBe("Depannage App.");
 
     const dot = wrapper.find(".dot");
     expect(dot.text()).toBe(".");

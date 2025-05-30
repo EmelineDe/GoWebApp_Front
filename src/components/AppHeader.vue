@@ -1,8 +1,8 @@
 <template>
   <header class="app-header">
-    <!-- Bloc logo Goweb. -->
+    <!-- Bloc logo DepannageApp. -->
     <div class="logo-container">
-      <span class="logo">Goweb</span>
+      <span class="logo">Depannage App</span>
       <span class="dot">.</span>
     </div>
 
@@ -21,7 +21,7 @@
   background-color: #ffffff;
   height: auto;
 }
-/* Bloc Goweb. */
+/* Bloc DepannageApp. */
 .logo-container {
   justify-self: start;
   margin-left: 0;

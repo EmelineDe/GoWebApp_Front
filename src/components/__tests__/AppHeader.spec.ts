@@ -13,7 +13,7 @@ describe("AppHeader", () => {
     expect(wrapper.vm).toBeTruthy();
 
     const logo = wrapper.find(".logo");
-    expect(logo.text()).toBe("Goweb");
+    expect(logo.text()).toBe("Depannage App");
 
     const dot = wrapper.find(".dot");
     expect(dot.text()).toBe(".");

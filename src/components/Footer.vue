@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer-content">
-      <span class="footer-text">Goweb<span class="dot">.</span></span>
+      <span class="footer-text">Depannage App<span class="dot">.</span></span>
     </div>
   </footer>
 </template>

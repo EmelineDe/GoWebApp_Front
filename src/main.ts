@@ -18,9 +18,9 @@ const vuetify = createVuetify({
   components,
   directives,
   theme: {
-    defaultTheme: "goweb",
+    defaultTheme: "depannageapp",
     themes: {
-      goweb: {
+      depannageapp: {
         dark: false,
         colors: {
           primary: "#FF445F",
